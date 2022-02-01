@@ -41,4 +41,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Relasi one to many dengan tabel status
+    public function statuses()
+    {
+        return $this->hasMany(Status::class);
+    }
 }

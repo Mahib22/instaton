@@ -1,16 +1,26 @@
 <x-app-layout>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden border sm:rounded-lg">
-                <div class="p-6 bg-white border-gray-200">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem praesentium culpa deleniti?
-                    Accusantium placeat quibusdam suscipit quam cumque possimus atque ex, reprehenderit, aliquam
-                    reiciendis porro. Consectetur numquam ipsa eligendi enim. Lorem ipsum, dolor sit amet consectetur
-                    adipisicing elit. Dolores, dicta assumenda illum similique tempora at culpa? Exercitationem
-                    perspiciatis, repellat est explicabo maiores accusantium, laboriosam impedit nostrum numquam nobis
-                    voluptates facilis!
+    <x-container>
+        <div class="grid grid-cols-12 gap-6">
+            <div class="col-span-7">
+                <div class="space-y-6">
+                    @foreach ($statuses as $status)
+                        <div class="flex">
+                            <div class="flex-shrink-0 mr-3">
+                                <img class="w-10 h-10 rounded-full" src="https://i.pravatar.cc/300"
+                                    alt="{{ $status->user->name }}">
+                            </div>
+                            <div>
+                                <div class="font-semibold">{{ $status->user->name }}</div>
+                                <div class="leading-relaxed">{{ $status->body }}</div>
+                                <div class="text-sm text-gray-600">{{ $status->created_at->diffForHumans() }}</div>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
+            <div class="col-span-5">
+                Friend
+            </div>
         </div>
-    </div>
+    </x-container>
 </x-app-layout>
