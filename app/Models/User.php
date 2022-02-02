@@ -47,4 +47,16 @@ class User extends Authenticatable
     {
         return $this->hasMany(Status::class);
     }
+
+    // Relasi belongs to many dengan tabel following with timestamps
+    public function follows()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'user_id', 'following_user_id')->withTimestamps();
+    }
+
+    // function follow untuk menambahkan user yang sedang login sebagai following
+    public function follow(User $user)
+    {
+        return $this->follows()->save($user);
+    }
 }
