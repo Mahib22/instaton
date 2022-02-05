@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -58,5 +59,24 @@ class User extends Authenticatable
     public function follow(User $user)
     {
         return $this->follows()->save($user);
+    }
+
+    // function mendapatkan status user yang kita follow
+    public function timeline()
+    {
+        $following = $this->follows->pluck('id');
+        return Status::whereIn('user_id', $following)
+            ->orWhere('user_id', $this->id)
+            ->latest()
+            ->get();
+    }
+
+    // function membuat status baru
+    public function makeStatus($string)
+    {
+        $this->statuses()->create([
+            'body' => $string,
+            'identifier' => Str::slug(Str::random(31) . $this->id),
+        ]);
     }
 }

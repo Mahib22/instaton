@@ -9,6 +9,8 @@ class Status extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['body', 'identifier'];
+
     // Relasi belongs to dengan table users
     public function user()
     {
