@@ -63,6 +63,12 @@ class User extends Authenticatable
         return $this->belongsToMany(User::class, 'follows', 'user_id', 'following_user_id')->withTimestamps();
     }
 
+    // menampilkan follower tanpa timestamp
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'following_user_id', 'user_id');
+    }
+
     // function follow untuk menambahkan user yang sedang login sebagai following
     public function follow(User $user)
     {

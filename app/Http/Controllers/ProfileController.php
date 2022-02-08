@@ -16,6 +16,9 @@ class ProfileController extends Controller
     public function __invoke(Request $request, User $user)
     {
         //
-        return view('users.show', compact('user'));
+        return view('users.show', [
+            'user' => $user,
+            'statuses' => $user->statuses()->latest()->get(),
+        ]);
     }
 }
