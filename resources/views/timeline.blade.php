@@ -7,7 +7,7 @@
                         @csrf
                         <div class="flex">
                             <div class="flex-shrink-0 mr-3">
-                                <img class="w-10 h-10 rounded-full" src="https://i.pravatar.cc/300"
+                                <img class="w-10 h-10 rounded-full" src="{{ Auth::user()->gravatar() }}"
                                     alt="{{ Auth::user()->name }}">
                             </div>
                             <div class="w-full">
@@ -29,7 +29,7 @@
                             <x-card>
                                 <div class="flex">
                                     <div class="flex-shrink-0 mr-3">
-                                        <img class="w-10 h-10 rounded-full" src="https://i.pravatar.cc/300"
+                                        <img class="w-10 h-10 rounded-full" src="{{ $status->user->gravatar() }}"
                                             alt="{{ $status->user->name }}">
                                     </div>
                                     <div>
@@ -52,12 +52,13 @@
     as $user)
                             <div class="flex items-center">
                                 <div class="flex-shrink-0 mr-3">
-                                    <img class="w-10 h-10 rounded-full" src="https://i.pravatar.cc/300"
+                                    <img class="w-10 h-10 rounded-full" src="{{ $user->gravatar() }}"
                                         alt="{{ $user->name }}">
                                 </div>
                                 <div>
                                     <div class="font-semibold">{{ $user->name }}</div>
-                                    <div class="text-sm text-gray-600">{{ $user->pivot->created_at->diffForHumans() }}
+                                    <div class="text-sm text-gray-600">
+                                        {{ $user->pivot->created_at->diffForHumans() }}
                                     </div>
                                 </div>
                             </div>
