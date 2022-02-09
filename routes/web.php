@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FollowingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\TimelineController;
@@ -27,5 +28,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('profile/{user}', ProfileController::class)->name('profile');
+
+Route::get('profile/{user}/{following}', FollowingController::class)->name('profile.following');
 
 require __DIR__ . '/auth.php';
