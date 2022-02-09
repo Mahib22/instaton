@@ -75,6 +75,12 @@ class User extends Authenticatable
         return $this->follows()->save($user);
     }
 
+    // function unfollow
+    public function unfollow(User $user)
+    {
+        return $this->follows()->detach($user);
+    }
+
     // function mendapatkan status user yang kita follow
     public function timeline()
     {
@@ -92,5 +98,11 @@ class User extends Authenticatable
             'body' => $string,
             'identifier' => Str::slug(Str::random(31) . $this->id),
         ]);
+    }
+
+    // cek apakah kita sudah memfollow user tersebut atau belum
+    public function hasFollow(User $user)
+    {
+        return $this->follows()->where('following_user_id', $user->id)->exists();
     }
 }

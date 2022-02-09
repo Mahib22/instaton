@@ -25,10 +25,12 @@ Route::middleware('auth')->group(function () {
     Route::get('timeline', TimelineController::class)->name('timeline');
 
     Route::post('status', [StatusController::class, 'store'])->name('status.store');
+
+    Route::get('profile/{user}/{following}', [FollowingController::class, 'index'])->name('following.index');
+    Route::post('profile/{user}', [FollowingController::class, 'store'])->name('following.store');
 });
 
 Route::get('profile/{user}', ProfileController::class)->name('profile');
 
-Route::get('profile/{user}/{following}', FollowingController::class)->name('profile.following');
 
 require __DIR__ . '/auth.php';
