@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExploreUserController;
 use App\Http\Controllers\FollowingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StatusController;
@@ -28,6 +29,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('profile/{user}/{following}', [FollowingController::class, 'index'])->name('following.index');
     Route::post('profile/{user}', [FollowingController::class, 'store'])->name('following.store');
+
+    Route::get('explore', ExploreUserController::class)->name('users.index');
 });
 
 Route::get('profile/{user}', ProfileController::class)->name('profile');
