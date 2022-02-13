@@ -29,14 +29,16 @@
                     </div>
                 </div>
             </div>
-            <div class="col-span-5">
-                <x-card>
-                    <h1 class="font-semibold mb-5">Friend</h1>
-                    <div class="space-y-5">
-                        <x-following :users="Auth::user()->follows()->limit(5)->get()"></x-following>
-                    </div>
-                </x-card>
-            </div>
+            @if (Auth::user()->follows()->count())
+                <div class="col-span-5">
+                    <x-card>
+                        <h1 class="font-semibold mb-5">Friend</h1>
+                        <div class="space-y-5">
+                            <x-following :users="Auth::user()->follows()->limit(5)->get()"></x-following>
+                        </div>
+                    </x-card>
+                </div>
+            @endif
         </div>
     </x-container>
 </x-app-layout>
